@@ -2,8 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 import { Task } from './entities/task.entity';
-import { NotFoundError } from 'rxjs';
-
+import { v4 as uuidv4 } from 'uuid'; 
 @Injectable()
 export class TasksService {
   private tasks: Task[] = [
@@ -51,8 +50,9 @@ export class TasksService {
   ];
   create(createTaskDto: CreateTaskDto): Task {
     const newTask: Task = {
-      id: (this.tasks.length + 1).toString(),
+      id: uuidv4(),
       ...createTaskDto,
+      status:"pending",
       createdAt: new Date().toISOString(),
     };
 
