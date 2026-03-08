@@ -10,7 +10,8 @@ import { Injectable } from '@nestjs/common';
 })
 @Injectable()
 export class TasksGateway {
-  @WebSocketServer() server: Server;
+  @WebSocketServer()
+  server: Server;
 
   sendTaskCreated(task: any) {
     this.server.emit('task-created', task);

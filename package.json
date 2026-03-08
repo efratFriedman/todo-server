@@ -26,6 +26,7 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/mongoose": "^11.0.4",
     "@nestjs/platform-express": "^11.0.1",
+    "@nestjs/platform-socket.io": "^11.1.16",
     "@nestjs/websockets": "^11.1.16",
     "@types/socket.io": "^3.0.1",
     "class-transformer": "^0.5.1",
