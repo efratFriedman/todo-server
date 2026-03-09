@@ -6,7 +6,8 @@ import { Injectable } from '@nestjs/common';
   cors: {
     origin: 'http://localhost:5173', 
     methods: ['GET', 'POST'],
-  },
+    
+  }, 
 })
 @Injectable()
 export class TasksGateway {

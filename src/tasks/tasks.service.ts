@@ -35,12 +35,16 @@ export class TasksService {
 
   async update(id: string, updateTaskDto: UpdateTaskDto) {
     const updated = await this.taskModel.findByIdAndUpdate(id, updateTaskDto, { new: true }).exec();
-    if (updated) this.tasksGateway.sendTaskUpdated(updated);
+    if (updated) {
+      this.tasksGateway.sendTaskUpdated(updated);
+    }
     return updated;
   }
 
   async remove(id: string) {
     const deleted = await this.taskModel.findByIdAndDelete(id).exec();
-    if (deleted) this.tasksGateway.sendTaskDeleted(deleted.id);
+    if (deleted) {
+      this.tasksGateway.sendTaskDeleted(deleted.id);
+    }
   }
 }
