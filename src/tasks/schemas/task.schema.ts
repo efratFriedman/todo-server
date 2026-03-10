@@ -1,6 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import type { Task, TaskPriority, TaskStatus } from '../entities/task.entity';
+import type { Task } from '../entities/task.entity';
+import { TaskStatusEnum } from '../enums/task-status.enum';
+import { TaskPriorityEnum } from '../enums/task-priority.enum';
 
 export type TaskDocument = Task & Document;
 
@@ -12,11 +14,11 @@ export class TaskModel implements Omit<Task, 'id'> {
     @Prop()
     description: string;
 
-    @Prop({ default: 'pending', enum: ['pending', 'in-progress', 'completed'] })
-    status: TaskStatus;
+    @Prop({ default: TaskStatusEnum.Pending, enum: Object.values(TaskStatusEnum) })
+    status: TaskStatusEnum;
 
-    @Prop({ default: 'medium', enum: ['low', 'medium', 'high'] })
-    priority: TaskPriority;
+    @Prop({ default: TaskPriorityEnum.Low, enum: Object.values(TaskPriorityEnum) })
+    priority: TaskPriorityEnum;
 
     @Prop({ default: () => new Date().toISOString() })
     createdAt: string;
